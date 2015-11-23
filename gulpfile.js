@@ -16,7 +16,6 @@ gulp.task('build:equation_editor', function() {
     ])
     .pipe(coffee({bare: true}))
     .pipe(concat('equation_editor.js'))
-    .pipe(uglify())
     .pipe(gulp.dest('./build/js/'))
 });
 
@@ -24,7 +23,7 @@ gulp.task('build:plugin', function() {
   gulp.src('./src/plugin.coffee')
     .pipe(coffee({bare: true}))
     .pipe(concat('plugin.min.js')) // include "min" in the filename to please TinyMCE
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('./build/js/'))
 });
 

@@ -8,7 +8,7 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
 
       popup = editor.windowManager.open(
         {
-          url: 'bower_components/tinymce-dist/plugins/equationeditor/equation_editor.html'
+          url: 'equation_editor.html'
           width: 820,
           height: 400,
           inline: 1,
@@ -58,9 +58,8 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
         editing = @
         latex = $(@).attr('src').replace(codeCogsUrl, '')
         editor.execCommand('mceMathquill', latex)
-        console.log(latex)
 
-    editor.addButton 'equationeditor', {
+    editor.addButton 'tinymce_equation_editor', {
       title: 'Equation editor',
       cmd: 'mceMathquill',
       text: 'f(x)'
@@ -90,4 +89,4 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
       version:   '1.0'
     }
 })
-tinymce.PluginManager.add('equationeditor', tinymce.plugins.EquationEditorPlugin)
+tinymce.PluginManager.add('tinymce_equation_editor', tinymce.plugins.EquationEditorPlugin)
