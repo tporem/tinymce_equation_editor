@@ -1,13 +1,14 @@
 tinymce.create('tinymce.plugins.EquationEditorPlugin', {
   init: (editor, url) ->
     editing = null
+    codeCogsUrl = 'https://webstudy.codecogs.com/gif.latex?'
 
     editor.addCommand 'mceMathquill', (existing_latex) ->
       existing_latex ||= ''
 
       popup = editor.windowManager.open(
         {
-          url: 'equation_editor.html'
+          url: 'bower_components/tinymce-dist/plugins/equationeditor/equation_editor.html'
           width: 820,
           height: 400,
           inline: 1,
@@ -15,12 +16,11 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
           title: 'Equation Editor',
           buttons: [
             {
-              text: 'insert',
+              text: 'insert equation',
               subtype: 'primary',
               onclick: ->
                 win = editor.windowManager.getWindows()[0]
                 latex = editor.windowManager.getParams()['latexInput'].mathquill('latex')
-
                 editor.execCommand 'mceMathquillInsert', latex
                 win.close()
             },
@@ -41,11 +41,11 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
     editor.addCommand 'mceMathquillInsert', (latex) ->
       return unless latex
 
-      content = """
-        &nbsp;<span class="rendered-latex" contenteditable="false">
-          #{latex}
-        </span>&nbsp;
-      """
+      content = '''
+        &nbsp;
+          <img class="rendered-latex" src="'''+ codeCogsUrl + latex + '''"> 
+        &nbsp;
+      '''
 
       editor.selection.select(editing) if editing
       editing = null
@@ -56,8 +56,9 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
       $(editor.getDoc()).on 'click', '.rendered-latex', (e) ->
         e.stopPropagation()
         editing = @
-        latex = $(@).find('.selectable').text().replace(/^\$/, '').replace(/\$$/, '')
+        latex = $(@).attr('src').replace(codeCogsUrl, '')
         editor.execCommand('mceMathquill', latex)
+        console.log(latex)
 
     editor.addButton 'equationeditor', {
       title: 'Equation editor',

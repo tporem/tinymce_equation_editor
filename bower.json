@@ -1,0 +1,23 @@
+{
+    "name": "tinymce_equation_editor",
+    "description": "TinyMCE equation editor fulfilling WebStudy needs",
+    "main": "/build/js/plugin.js",
+    "authors": [
+        "Foraker Labs",
+        "Tomas Poremba"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/tporem/tinymce_equation_editor",
+    "moduleType": [ ],
+    "private": true,
+    "ignore": [
+        "example",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular-ui-tinymce": "~0.0.9"
+    }
+}
