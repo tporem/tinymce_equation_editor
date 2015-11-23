@@ -8,7 +8,7 @@ tinymce.create('tinymce.plugins.EquationEditorPlugin', {
 
       popup = editor.windowManager.open(
         {
-          url: 'equation_editor.html'
+          url: 'bower_components/tinymce_equation_editor/build/equation_editor.html'
           width: 820,
           height: 400,
           inline: 1,
